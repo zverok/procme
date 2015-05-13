@@ -1,0 +1,13 @@
+AllCops:
+  Include:
+    - 'lib/**/*'
+  Exclude:
+    - 'examples/*'
+    - 'vendor/**/*'
+
+Style/SpaceInsideBlockBraces:
+  EnforcedStyle: no_space
+  SpaceBeforeBlockParameters: false
+
+Style/SpaceBeforeBlockBraces:
+  EnforcedStyle: no_space
