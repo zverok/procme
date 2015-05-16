@@ -1,10 +1,17 @@
 # ProcMe
 
 ## Install
-With Bundler (brand new and yet unpublished to RubyGems):
+With Bundler:
 
+```ruby
+gem 'procme'
 ```
-gem 'procme', git: 'git://github.com/zverok/procme.git'
+
+in your Gemfile, then `bundle install`.
+
+Or without:
+```
+gem install procme
 ```
 
 ## Usage
