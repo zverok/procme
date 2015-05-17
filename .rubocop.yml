@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - 'examples/*'
     - 'vendor/**/*'
+    - 'spec/**/*'
 
 Style/SpaceInsideBlockBraces:
   EnforcedStyle: no_space
