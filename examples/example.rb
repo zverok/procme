@@ -4,7 +4,11 @@ require_relative '../lib/procme'
 # Giving you have
 class Person < Struct.new(:name, :age, :gender)
   def greet(who)
-    puts "#{name}: Hello, #{who}!"
+    "#{name}: Hello, #{who}!"
+  end
+
+  def greet!(who)
+    puts greet(name)
   end
 
   def inspect
@@ -39,9 +43,17 @@ p people.map(&set(gender: 'female'))
 # => [#<John, female, 30>, #<Jane, female, 23>, #<Jake, female, 48>, #<Judith, female, 16>]
 
 # ProcMe::call(method: [args]) - bulk call method with arguments:
-people.each(&call(greet: 'Ellis'))
+people.each(&call(greet!: 'Ellis'))
 # Output:
 #   John: Hello, Ellis!
 #   Jane: Hello, Ellis!
 #   Jake: Hello, Ellis!
 #   Judith: Hello, Ellis!
+
+# also works with #map:
+p people.map(&call(greet: 'Ellis'))
+# => ["John: Hello, Ellis!", "Jane: Hello, Ellis!", "Jake: Hello, Ellis!", "Judith: Hello, Ellis!"]
+
+# ...and with several arguments:
+p people.map(&:name).map(&call(sub: ['J', 'F']))
+# => ["Fohn", "Fane", "Fake", "Fudith"]

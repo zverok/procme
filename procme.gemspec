@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = 'procme'
-  s.version  = '0.0.1'
+  s.version  = '0.0.2'
   s.authors  = ['Victor Shepelev']
   s.email    = 'zverok.offline@gmail.com'
   s.homepage = 'https://github.com/zverok/procme'
@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency 'rubocop', '~> 0.30'
+  s.add_development_dependency 'rspec', '~> 3'
 end

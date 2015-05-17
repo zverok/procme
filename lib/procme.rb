@@ -18,8 +18,8 @@ module ProcMe
 
   def call(hash)
     lambda do |o|
-      hash.each{|k, v| o.send(k, *v)}
-      o
+      res = hash.map{|k, v| o.send(k, *v)}
+      res.count == 1 ? res.first : res
     end
   end
 
