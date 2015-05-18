@@ -16,19 +16,25 @@ module ProcMe
     end
   end
 
-  def call(hash)
+  def call(*methods)
+    h = methods.last.is_a?(Hash) ? methods.pop : {}
+    hash = Hash[*methods.flat_map{|sym| [sym, []]}].merge(h)
+
     lambda do |o|
-      res = hash.map{|k, v| o.send(k, *v)}
-      res.count == 1 ? res.first : res
+      ProcMe._singularize(hash.map{|k, v| o.send(k, *v)})
     end
   end
 
   def get(*array)
     lambda do |o|
-      array.map{|v| o.send(*v)}
+      ProcMe._singularize(array.map{|v| o.send(*v)})
     end
   end
 
   # now we can use both include ProcMe & no include approach
   extend self # rubocop:disable Style/ModuleFunction
+
+  def _singularize(arr)
+    arr.length == 1 ? arr.first : arr
+  end
 end

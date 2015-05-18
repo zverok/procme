@@ -73,6 +73,11 @@ people.map(&call(greet: 'Ellis'))
 # ...and with several arguments:
 p people.map(&:name).map(&call(sub: ['J', 'F']))
 # => ["Fohn", "Fane", "Fake", "Fudith"]
+
+# ...and even several method you can call!
+p people.map(&:name).map(&call(:downcase, :'+' => ', hello'))
+# => [["john", "John, hello"], ["jane", "Jane, hello"], ["jake", "Jake, hello"], ["judith", "Judith, hello"]]
+# Note that each method call is performed on ORIGINAL object
 ```
 
 ## Rationale
@@ -113,3 +118,37 @@ P = ProcMe # to be short
 
 people.select(&P.fltr(gender: 'female'))
 ```
+
+## Should you use it?
+
+Frankly, I don't know. Things that mimic core language features can be
+extremely useful, yet potentially they make your code more obscure for
+reader. Though I think that ProcMe's syntax is pretty self-explanatory,
+you colleagues may have other opinion.
+
+As for me, since invention of this little thingy I've found it extremely
+handy and useful.
+
+## Small gotchas
+
+`ProcMe.fltr` uses `#===` while comparing values. This way you can filter
+strings by regular expressions or numbers by ranges. One counterintuitive
+things is going on when you try to filter by object class:
+
+```ruby
+['test', 'me'].select(&fltr(class: String)) # => []
+```
+
+It's because you should check object itself, not its class, to match with
+`===`. The solution is simple:
+
+```ruby
+['test', 'me'].select(&fltr(itself: String)) # => []
+```
+
+`#itself` method is available in Ruby >= 2.0, and easily backported to
+earlier versions.
+
+## License
+
+MIT

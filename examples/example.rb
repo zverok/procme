@@ -57,3 +57,8 @@ p people.map(&call(greet: 'Ellis'))
 # ...and with several arguments:
 p people.map(&:name).map(&call(sub: ['J', 'F']))
 # => ["Fohn", "Fane", "Fake", "Fudith"]
+
+# ...and even several method you can call!
+p people.map(&:name).map(&call(:downcase, :'+' => ', hello'))
+# => [["john", "John, hello"], ["jane", "Jane, hello"], ["jake", "Jake, hello"], ["judith", "Judith, hello"]]
+# Note that each method call is performed on ORIGINAL object
