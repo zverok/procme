@@ -16,6 +16,8 @@ Or without:
 gem install procme
 ```
 
+[YARD docs](http://www.rubydoc.info/gems/procme)
+
 ## Usage
 
 ```ruby
