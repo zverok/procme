@@ -147,7 +147,7 @@ It's because you should check object itself, not its class, to match with
 `===`. The solution is simple:
 
 ```ruby
-['test', 'me'].select(&fltr(itself: String)) # => []
+['test', 'me'].select(&fltr(itself: String)) # => ['test', 'me']
 ```
 
 `#itself` method is available in Ruby >= 2.0, and easily backported to
