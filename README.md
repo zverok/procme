@@ -1,5 +1,7 @@
 # ProcMe
 
+[![Gem Version](https://badge.fury.io/rb/procme.svg)](http://badge.fury.io/rb/procme)
+
 ## Install
 With Bundler:
 
