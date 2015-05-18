@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ["lib"]
 
+  s.has_rdoc = 'yard'
+
   s.add_development_dependency 'rubocop', '~> 0.30'
   s.add_development_dependency 'rspec', '~> 3'
 end

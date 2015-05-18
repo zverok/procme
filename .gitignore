@@ -2,3 +2,5 @@
 vendor
 Gemfile.lock
 *.gem
+.yardoc
+doc
