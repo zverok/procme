@@ -19,7 +19,7 @@ gem install procme
 ## Usage
 
 ```ruby
-# Giving you have
+# Given you have
 class Person < Struct.new(:name, :age, :gender)
   def greet(who)
     "#{name}: Hello, #{who}!"

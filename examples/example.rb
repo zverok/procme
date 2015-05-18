@@ -1,7 +1,7 @@
 # encoding: utf-8
 require_relative '../lib/procme'
 
-# Giving you have
+# Given you have
 class Person < Struct.new(:name, :age, :gender)
   def greet(who)
     "#{name}: Hello, #{who}!"
