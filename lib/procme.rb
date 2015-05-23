@@ -66,7 +66,7 @@ module ProcMe
   #
   def filter(attrs)
     lambda do |o|
-      hash.all?{|k, v| v === o.send(k)} # rubocop:disable Style/CaseEquality
+      attrs.all?{|k, v| v === o.send(k)} # rubocop:disable Style/CaseEquality
     end
   end
 
