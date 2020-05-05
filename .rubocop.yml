@@ -6,9 +6,23 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/**/*'
 
-Style/SpaceInsideBlockBraces:
-  EnforcedStyle: no_space
-  SpaceBeforeBlockParameters: false
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 
-Style/SpaceBeforeBlockBraces:
-  EnforcedStyle: no_space
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true

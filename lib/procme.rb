@@ -1,16 +1,16 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 # ProcMe is DRY and clean blocks for your code.
 #
 # It provides four methods:
 #
 # {#fltr} - checks object attribute values
-#  
+#
 #   ['test', 'me', 'please'].select(&fltr(length: 4))
 #   # => ['test']
 #
 # {#get} - get object attribute values
-# 
+#
 #   ['test', 'me', 'please'].map(&get(:upcase, :length))
 #   # => [['TEST', 4], ['ME', 2'], ['PLEASE', 6]]
 #
@@ -20,12 +20,12 @@
 #   # => ['t*st', 'm*', 'pl*as*']
 #
 # {#set} - set object attribute values
-# 
+#
 #   S = Struct.new(:name)
 #   arr = [S.new('test'), S.new('me')]
 #   arr.each(&set(name: 'please'))
 #   arr # => [#<struct S name="please">, #<struct S name="please">]
-# 
+#
 # You can use the module as is:
 #
 #   ['test', 'me', 'please'].select(&ProcMe.fltr(length: 4))
@@ -66,11 +66,11 @@ module ProcMe
   #
   def filter(attrs)
     lambda do |o|
-      attrs.all?{|k, v| v === o.send(k)} # rubocop:disable Style/CaseEquality
+      attrs.all? { |k, v| v === o.send(k) } # rubocop:disable Style/CaseEquality
     end
   end
 
-  alias_method :fltr, :filter
+  alias fltr filter
 
   # Constructs block, able to set objects attribute values
   #
@@ -83,7 +83,7 @@ module ProcMe
   #
   def set(attrs)
     lambda do |o|
-      attrs.each{|k, v| o.send("#{k}=", v)}
+      attrs.each { |k, v| o.send("#{k}=", v) }
       o
     end
   end
@@ -114,10 +114,10 @@ module ProcMe
   #
   def call(*methods)
     h = methods.last.is_a?(Hash) ? methods.pop : {}
-    hash = Hash[*methods.flat_map{|sym| [sym, []]}].merge(h)
+    hash = Hash[*methods.flat_map { |sym| [sym, []] }].merge(h)
 
     lambda do |o|
-      ProcMe._singularize(hash.map{|k, v| o.send(k, *v)})
+      ProcMe._singularize(hash.map { |k, v| o.send(k, *v) })
     end
   end
 
@@ -142,7 +142,7 @@ module ProcMe
   #
   def get(*attrs)
     lambda do |o|
-      ProcMe._singularize(attrs.map{|v| o.send(*v)})
+      ProcMe._singularize(attrs.map { |v| o.send(*v) })
     end
   end
 
